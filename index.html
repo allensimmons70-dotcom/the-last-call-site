@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#09090b">
+  <meta name="description" content="The Last Call: Chapter One. The call ended. The basement didn't. A cinematic interactive horror experience and Replay Pass.">
+  <title>The Last Call | Reopen Your File</title>
+  <style>
+    :root { color-scheme:dark; --bg:#09090b;--panel:#151316;--line:#453238;--paper:#f2e9e2;--muted:#b1a5a2;--red:#c63e49;--darkred:#822630; }
+    * {box-sizing:border-box}
+    html {scroll-behavior:smooth}
+    body {margin:0;background:var(--bg);color:var(--paper);font:16px/1.58 Arial,Helvetica,sans-serif;}
+    body::before {content:"";position:fixed;inset:0;pointer-events:none;z-index:-1;background:radial-gradient(ellipse at 74% 11%,#51212a75,transparent 43%),radial-gradient(ellipse at 0% 90%,#341b2052,transparent 48%)}
+    a {color:inherit}
+    a:focus-visible,button:focus-visible {outline:3px solid #e39b9c;outline-offset:4px}
+    .wrap {max-width:1110px;width:calc(100% - 44px);margin-inline:auto}
+    .top {border-bottom:1px solid #392c2f;background:#0b0b0ddc}
+    .top .wrap {min-height:73px;display:flex;justify-content:space-between;align-items:center;gap:18px}
+    .brand {font:700 1rem Georgia,serif;letter-spacing:.17em;text-decoration:none;white-space:nowrap}
+    .brand strong {color:var(--red)}
+    nav {display:flex;gap:23px;align-items:center}nav a {font-size:.77rem;letter-spacing:.1em;text-decoration:none;text-transform:uppercase;color:#ded3d0}nav a:hover {color:white}
+    .hero {display:grid;grid-template-columns:1.08fr .92fr;gap:54px;align-items:center;padding:72px 0 74px}
+    .eyebrow {color:var(--red);font-size:.76rem;letter-spacing:.24em;font-weight:700;text-transform:uppercase}
+    h1,h2,h3 {font-family:Georgia,'Times New Roman',serif;font-weight:400;line-height:1.12}
+    h1 {font-size:clamp(3.2rem,7vw,6.5rem);margin:22px 0 22px;letter-spacing:-.045em}
+    h1 em {font-style:normal;color:#d94a55}
+    h2 {font-size:clamp(2.15rem,4.5vw,3.45rem);margin:0 0 19px}
+    h3 {font-size:1.45rem;margin:0 0 10px}
+    p {color:#c9bfbb}p.lead {font-size:1.15rem;max-width:530px}
+    .button {display:inline-flex;align-items:center;justify-content:center;border:1px solid #ba4550;background:#9a2732;padding:15px 25px;color:#fff;text-decoration:none;text-transform:uppercase;letter-spacing:.13em;font-weight:700;font-size:.8rem;border-radius:3px;cursor:pointer}
+    .button:hover {background:#b43742}.button:disabled {background:#693239;cursor:not-allowed;opacity:.72}
+    .small {font-size:.82rem;color:var(--muted)}
+    .art {border:1px solid #56323b;background:#22161b;box-shadow:0 25px 70px #000b;position:relative;min-height:370px;display:grid;place-items:center;overflow:hidden}
+    .art img {display:block;width:100%;height:auto}
+    .line {height:1px;background:linear-gradient(90deg,transparent,#75505a,transparent)}
+    section {padding:72px 0}
+    .panel {background:linear-gradient(135deg,#22171b,#111113);border:1px solid #62313c;padding:36px;display:grid;grid-template-columns:minmax(0,1fr) auto;gap:36px;align-items:center}
+    .panel p {margin:8px 0}.price {font:400 3.4rem Georgia,serif;color:white}.checkout {text-align:center}
+    .checkout .button {min-width:244px}.checkout p {max-width:260px;margin:12px auto}
+    .steps {display:grid;grid-template-columns:repeat(3,1fr);gap:19px}
+    .step {border:1px solid var(--line);background:#171418;padding:26px;min-height:197px}
+    .step .num {color:var(--red);font-size:.77rem;letter-spacing:.16em;font-weight:bold;display:block;margin-bottom:16px}
+    .step p {font-size:.93rem;margin:0}
+    .music {display:grid;grid-template-columns:.9fr 1.1fr;gap:36px;align-items:center}
+    .music-frame {border:1px solid #5d343e;background:#000;aspect-ratio:16/9;overflow:hidden}
+    .music-frame iframe {border:0;width:100%;height:100%;display:block}
+    .music-note {display:inline-block;border:1px solid #734b54;padding:7px 12px;color:#ddc9c7;font-size:.79rem;letter-spacing:.06em}
+    .ruth {text-align:center;border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:51px 0}
+    .ruth blockquote {font:italic 1.62rem/1.5 Georgia,serif;margin:20px auto 7px;max-width:760px;color:#eadada}
+    footer {padding:33px 0 40px;font-size:.85rem;color:var(--muted)}
+    footer .wrap {display:flex;justify-content:space-between;gap:18px;flex-wrap:wrap}
+    .badge {color:#ddaaaa;font-size:.73rem;letter-spacing:.17em;font-weight:bold;text-transform:uppercase}
+    @media(max-width:850px) {.hero{grid-template-columns:1fr;padding:48px 0;gap:37px}.art{width:100%;max-width:540px;margin:auto}.panel,.music{grid-template-columns:1fr}.checkout{text-align:left}.checkout p{margin:12px 0}.steps{grid-template-columns:1fr}}
+    @media(max-width:470px) {.top .wrap{flex-direction:column;padding:16px 0}.wrap{width:calc(100% - 30px)}nav{gap:13px}h1{font-size:3.35rem}.panel{padding:23px}section{padding:52px 0}.checkout .button{min-width:0;width:100%}}
+    @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+  </style>
+</head>
+<body>
+  <header class="top"><div class="wrap">
+    <a class="brand" href="./">THE LAST <strong>CALL</strong></a>
+    <nav aria-label="Main navigation"><a href="#experience">Experience</a><a href="#replay">Replay pass</a><a href="#soundtrack">Soundtrack</a></nav>
+  </div></header>
+  <main>
+    <div class="wrap hero">
+      <div>
+        <div class="eyebrow">Case file 001 · Chapter One</div>
+        <h1>MARROW<br>IS STILL<br><em>WAITING.</em></h1>
+        <p class="lead">The call ended. The basement didn't. Reopen your file and prepare for another five minutes inside <strong>The Last Call</strong>.</p>
+        <a class="button" href="#replay">Explore the replay pass</a>
+        <p class="small">Interactive fictional horror entertainment · Intended for adults 18+</p>
+      </div>
+      <div class="art"><img src="replay-pass.webp" alt="The Last Call Replay Pass artwork: an old black telephone in a sinister basement" width="960" height="960"></div>
+    </div>
+    <div class="line"></div>
+    <section id="replay" class="wrap" aria-labelledby="replay-heading">
+      <div class="eyebrow">Reopen the file</div>
+      <div class="panel">
+        <div>
+          <h2 id="replay-heading">The Replay Pass</h2>
+          <p><strong>One purchase. Repeat Chapter 1 attempts until you rescue Marrow.</strong></p>
+          <p>After your purchase is confirmed, you can request Ruth's return call and use a single-use access code to begin another attempt.</p>
+          <p class="small">Separate Chapter 2 release planned. No subscription.</p>
+        </div>
+        <div class="checkout">
+          <div class="price">$0.99</div>
+          <button class="button" type="button" disabled>Secure checkout coming soon</button>
+          <p class="small">Payments and callbacks are being tested. Orders are not being accepted yet.</p>
+        </div>
+      </div>
+    </section>
+    <section class="wrap" id="experience">
+      <div class="eyebrow">How the return works</div>
+      <h2>One more chance.<br>One more call.</h2>
+      <div class="steps">
+        <article class="step"><span class="num">01 · SCAN</span><h3>Reopen your file</h3><p>Scan the black card's QR patch or visit this website for the Replay Pass.</p></article>
+        <article class="step"><span class="num">02 · UNLOCK</span><h3>Keep your code</h3><p>Once checkout is available, complete the secure purchase and receive a one-time verification code.</p></article>
+        <article class="step"><span class="num">03 · ANSWER</span><h3>Ruth calls back</h3><p>Confirm you requested the return call, enter your code, and go back to Marrow.</p></article>
+      </div>
+    </section>
+    <div class="line"></div>
+    <section id="soundtrack" class="wrap music" aria-labelledby="music-heading">
+      <div>
+        <div class="eyebrow">Ruth's frequency · 001</div>
+        <h2 id="music-heading">Something's<br>on the line.</h2>
+        <p>A soundtrack for reopening your file. Press Play, then keep browsing—Ruth won't mind.</p>
+        <span class="music-note">♫ CLICK TO PLAY · SOUND OPTIONAL</span>
+        <p class="small">YouTube playback is viewer-controlled. A licensed audio file can replace this with an integrated site-wide music switch later.</p>
+      </div>
+      <div class="music-frame">
+        <iframe src="https://www.youtube-nocookie.com/embed/BHm9H7OUU0k?loop=1&amp;playlist=BHm9H7OUU0k&amp;rel=0" title="The Last Call chosen soundtrack on YouTube" loading="lazy" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+      </div>
+    </section>
+    <aside class="ruth"><div class="wrap"><span class="eyebrow">A note from the operator</span><blockquote>“Some files are better left closed. Yours has not been.”</blockquote><p>— Ruth</p></div></aside>
+  </main>
+  <footer><div class="wrap"><span>© <span id="year">2026</span> The Last Call · Fictional horror entertainment</span><span class="badge">Your file is still open.</span></div></footer>
+  <script>document.getElementById('year').textContent=String(new Date().getFullYear());</script>
+</body>
+</html>
