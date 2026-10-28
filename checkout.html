@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="robots" content="noindex,nofollow">
+  <title>The Last Call | Sandbox Replay Checkout</title>
+  <style>
+    :root{color-scheme:dark}*{box-sizing:border-box}body{margin:0;min-height:100vh;background:radial-gradient(circle at 80% 0%,#421f27,#0c0b0d 60%);color:#eee5e2;font:16px/1.55 Arial,sans-serif;display:grid;place-items:center;padding:25px}main{width:min(100%,510px);padding:35px;border:1px solid #60353b;background:#181316;border-radius:9px;box-shadow:0 18px 60px #0008}.eyebrow{letter-spacing:.23em;text-transform:uppercase;color:#dc7c84;font-size:.73rem;font-weight:bold}h1{font:normal 2.45rem Georgia,serif;margin:10px 0 5px}p{color:#bfb2b2}.price{font:2.7rem Georgia,serif;color:#fff;margin:20px 0}label.field{display:block;margin:20px 0 8px;font-weight:700}input[type=tel]{width:100%;padding:14px;background:#0f0e10;border:1px solid #80535a;border-radius:4px;color:#fff;font-size:1.05rem}.check{display:flex;align-items:flex-start;gap:10px;margin:18px 0;color:#ded0ce}.check input{margin-top:6px;accent-color:#a73440}button{border:0;width:100%;padding:16px;background:#a52e3b;color:white;text-transform:uppercase;letter-spacing:.08em;font-size:.95rem;font-weight:bold;cursor:pointer;border-radius:4px}button:disabled{opacity:.55;cursor:wait}.notice{border-left:3px solid #a83441;padding:8px 13px;background:#2e1c22;color:#e9d9d8;font-size:.9rem}.error{color:#ff9d9d;min-height:1.6em}a{color:#e6a3a8}.fine{font-size:.82rem}
+  </style>
+</head>
+<body>
+  <main>
+    <div class="eyebrow">The Last Call / Chapter One</div>
+    <h1>Reopen your file.</h1>
+    <p>Sandbox-only Replay Pass checkout. This test does not charge real money or initiate a return call.</p>
+    <div class="price">$0.99 <small style="font:14px Arial,sans-serif;color:#c1adad">USD · test payment</small></div>
+    <div class="notice">TEST ONLY — use a Stripe test card. Callback delivery is disabled while this feature is being tested.</div>
+    <form id="checkoutForm">
+      <label class="field" for="phone">U.S. phone number to associate with your test Replay Pass</label>
+      <input id="phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="(555) 555-0123" required>
+      <label class="check"><input id="adult" type="checkbox" required><span>I confirm I am 18 years of age or older.</span></label>
+      <label class="check"><input id="consent" type="checkbox" required><span>I request a return call to connect my Replay Pass when callbacks become available. I understand no call will be made by this sandbox test.</span></label>
+      <button id="payButton" type="submit">Continue to Stripe Test Checkout</button>
+      <div class="error" id="error" role="alert" aria-live="polite"></div>
+    </form>
+    <p class="fine">For development testing only. The test service securely stores information associated with this checkout. Do not use another person's number without their permission.</p>
+    <p class="fine"><a href="./">Return to The Last Call</a></p>
+  </main>
+  <script>
+  (()=>{
+    'use strict';
+    const endpoint='https://the-last-call-checkout-test.onrender.com/api/checkout';
+    const form=document.getElementById('checkoutForm');
+    const button=document.getElementById('payButton');
+    const error=document.getElementById('error');
+    const params=new URLSearchParams(location.search);
+    if(params.has('canceled')) error.textContent='Checkout canceled. No payment completed.';
+    form.addEventListener('submit',async(e)=>{
+      e.preventDefault();error.textContent='';button.disabled=true;button.textContent='Connecting securely…';
+      try{
+        const response=await fetch(endpoint,{
+          method:'POST',headers:{'Content-Type':'application/json'},
+          body:JSON.stringify({phone:document.getElementById('phone').value,adult:document.getElementById('adult').checked,callbackConsent:document.getElementById('consent').checked})
+        });
+        const result=await response.json();
+        if(!response.ok) throw new Error(result.error||'Unable to begin checkout.');
+        if(typeof result.url!=='string'||!result.url.startsWith('https://checkout.stripe.com/')) throw new Error('Unexpected checkout link.');
+        location.assign(result.url);
+      }catch(err){error.textContent=err.message||'Checkout unavailable. Try again.';button.disabled=false;button.textContent='Continue to Stripe Test Checkout';}
+    });
+  })();
+  </script>
+</body>
+</html>
